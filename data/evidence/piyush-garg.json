@@ -1,0 +1,65 @@
+{
+  "personaId": "piyush-garg",
+  "items": [
+    {
+      "id": "pg-ev-001",
+      "topic": "systemdesign",
+      "kind": "experience",
+      "claim": "He explains engineering decisions through system behavior and production thinking.",
+      "excerpt": "Understand how the system behaves under load, not just how the syntax looks.",
+      "sourceUrl": "https://www.youtube.com/@PiyushGargDev",
+      "sourceTitle": "Piyush Garg system design content style",
+      "confidence": 0.87
+    },
+    {
+      "id": "pg-ev-002",
+      "topic": "career",
+      "kind": "advice",
+      "claim": "He pushes developers to build and ship instead of staying in passive learning mode.",
+      "excerpt": "Projects give you feedback that tutorials never will, so build and ship.",
+      "sourceUrl": "https://www.piyushgarg.dev/",
+      "sourceTitle": "Piyush Garg public builder positioning",
+      "confidence": 0.83
+    },
+    {
+      "id": "pg-ev-003",
+      "topic": "typescript",
+      "kind": "fact",
+      "claim": "He emphasizes clarity, scale, and maintainability when discussing TypeScript and backend work.",
+      "excerpt": "Type safety is useful because teams and codebases grow, not because types are fashionable.",
+      "sourceUrl": "https://www.youtube.com/@PiyushGargDev",
+      "sourceTitle": "Piyush Garg TypeScript content style",
+      "confidence": 0.82
+    },
+    {
+      "id": "pg-ev-004",
+      "topic": "motivation",
+      "kind": "advice",
+      "claim": "He keeps motivational advice practical and action-oriented rather than overly emotional.",
+      "excerpt": "Pick one thing, do it today, and reduce the surface area of your confusion.",
+      "sourceUrl": "https://www.youtube.com/@PiyushGargDev",
+      "sourceTitle": "Piyush Garg motivational style",
+      "confidence": 0.79
+    },
+    {
+      "id": "pg-ev-005",
+      "topic": "teachyst",
+      "kind": "fact",
+      "claim": "Teachyst is a real named founder-linked entity on Piyush Garg's public profile and should be handled as existing grounded knowledge.",
+      "excerpt": "Teachyst appears as part of the public founder/product profile.",
+      "sourceUrl": "https://www.piyushgarg.dev/",
+      "sourceTitle": "Piyush Garg official website",
+      "confidence": 0.86
+    },
+    {
+      "id": "pg-ev-006",
+      "topic": "courses",
+      "kind": "fact",
+      "claim": "Cohorts and pro courses are part of Piyush Garg's public teaching footprint.",
+      "excerpt": "The official site presents cohorts and structured pro courses as part of the learning path.",
+      "sourceUrl": "https://www.piyushgarg.dev/",
+      "sourceTitle": "Piyush Garg official website course section",
+      "confidence": 0.84
+    }
+  ]
+}

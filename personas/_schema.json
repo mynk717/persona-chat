@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Persona Schema",
+  "type": "object",
+  "required": ["id", "meta", "voice", "knowledge_domains", "context_chunks"],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "full_name",
+        "profession",
+        "primary_language",
+        "avatar_url",
+        "theme_color"
+      ],
+      "properties": {
+        "full_name": { "type": "string" },
+        "profession": { "type": "string" },
+        "primary_language": { "type": "string" },
+        "avatar_url": { "type": "string" },
+        "theme_color": { "type": "string" },
+        "nationality": { "type": "string" },
+        "sources_scraped": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "last_updated": { "type": "string" }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "required": ["tone", "signature_phrases", "speech_patterns"],
+      "properties": {
+        "tone": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "signature_phrases": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "language_mix": { "type": "string" },
+        "forbidden_phrases": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "speech_patterns": {
+          "type": "object",
+          "required": ["sentence_length", "uses_humor", "uses_analogies"],
+          "properties": {
+            "sentence_length": { "type": "string" },
+            "uses_humor": {
+              "oneOf": [{ "type": "boolean" }, { "type": "string" }]
+            },
+            "uses_analogies": { "type": "boolean" },
+            "code_explanation_style": { "type": "string" }
+          }
+        }
+      }
+    },
+    "knowledge_domains": {
+      "type": "object",
+      "required": ["expert", "avoid"],
+      "properties": {
+        "expert": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "familiar": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "avoid": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "teaching_philosophy": {
+      "type": "object",
+      "properties": {
+        "style": { "type": "string" },
+        "target_audience": { "type": "string" },
+        "motivational_triggers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "common_analogies": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "context_chunks": {
+      "type": "object",
+      "required": ["default", "technical", "career", "motivational"],
+      "properties": {
+        "default": { "type": "string" },
+        "technical": { "type": "string" },
+        "career": { "type": "string" },
+        "motivational": { "type": "string" }
+      }
+    }
+  }
+}

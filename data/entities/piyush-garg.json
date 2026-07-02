@@ -1,0 +1,92 @@
+{
+  "personaId": "piyush-garg",
+  "apps": [],
+  "products": [
+    {
+      "id": "pg-ent-website",
+      "name": "PiyushGarg.dev",
+      "type": "product",
+      "aliases": ["piyushgarg.dev", "piyush garg website", "piyush website"],
+      "description": "Official website and central public identity for Piyush Garg's professional presence.",
+      "url": "https://www.piyushgarg.dev/",
+      "tags": ["website", "portfolio", "engineering"],
+      "importance": 10
+    },
+    {
+      "id": "pg-ent-teachyst",
+      "name": "Teachyst",
+      "type": "product",
+      "aliases": ["teachyst"],
+      "description": "A founder-linked product in Piyush Garg's public profile and a high-value named entity for startup or product-building questions.",
+      "url": "https://www.piyushgarg.dev/",
+      "tags": ["startup", "product", "founder"],
+      "importance": 10
+    },
+    {
+      "id": "pg-ent-wisprtype",
+      "name": "WisprType",
+      "type": "product",
+      "aliases": ["wisprtype", "wispr type"],
+      "description": "A named work/product entity from Piyush Garg's public profile.",
+      "url": "https://www.piyushgarg.dev/",
+      "tags": ["product", "experience", "engineering"],
+      "importance": 8
+    },
+    {
+      "id": "pg-ent-skyping",
+      "name": "Skyping",
+      "type": "product",
+      "aliases": ["skyping"],
+      "description": "A listed project/product entity from Piyush Garg's public profile.",
+      "url": "https://www.piyushgarg.dev/",
+      "tags": ["product", "project", "engineering"],
+      "importance": 7
+    }
+  ],
+  "courses": [
+    {
+      "id": "pg-ent-chaicode-cohorts",
+      "name": "ChaiCode Cohorts",
+      "type": "course",
+      "aliases": ["chaicode", "chai code", "cohort", "cohorts"],
+      "description": "Named cohort-based learning programs associated with Piyush Garg's teaching presence.",
+      "url": "https://www.piyushgarg.dev/",
+      "tags": ["course", "cohort", "teaching", "career"],
+      "importance": 9
+    },
+    {
+      "id": "pg-ent-pro-courses",
+      "name": "Pro Courses",
+      "type": "course",
+      "aliases": ["pro courses", "docker course", "node js course", "node course"],
+      "description": "Structured learning programs listed on Piyush Garg's public site, including topic-specific course offerings.",
+      "url": "https://www.piyushgarg.dev/",
+      "tags": ["course", "docker", "nodejs", "learning"],
+      "importance": 8
+    }
+  ],
+  "brands": [
+    {
+      "id": "pg-ent-youtube",
+      "name": "Piyush Garg YouTube Channel",
+      "type": "brand",
+      "aliases": ["piyush channel", "piyush youtube", "youtube channel"],
+      "description": "Primary public channel for system design, backend, TypeScript, and builder-focused content.",
+      "url": "https://www.youtube.com/@PiyushGargDev",
+      "tags": ["youtube", "systemdesign", "typescript", "career"],
+      "importance": 9
+    },
+    {
+      "id": "pg-ent-x-source",
+      "name": "Piyush Garg X/Twitter Source",
+      "type": "brand",
+      "aliases": ["x", "x.com", "twitter", "tweet", "tweets", "post", "posts"],
+      "description": "A future ingestion source category for concise opinions, public updates, and recurring builder-style observations after exact profile verification.",
+      "tags": ["x", "twitter", "social", "source"],
+      "importance": 5
+    }
+  ],
+  "communities": [],
+  "projects": [],
+  "companies": []
+}

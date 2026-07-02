@@ -1,0 +1,66 @@
+{
+  "personaId": "hitesh-choudhary",
+  "resources": [
+    {
+      "id": "hc-js-playlist",
+      "title": "JavaScript for Beginners Playlist",
+      "type": "youtube_playlist",
+      "url": "https://www.youtube.com/@HiteshChoudharydotcom",
+      "description": "Start here for JavaScript basics and practical understanding from the channel's beginner-friendly content.",
+      "tags": ["javascript", "technical"],
+      "intents": ["technical", "default"],
+      "priority": 95
+    },
+    {
+      "id": "hc-react-content",
+      "title": "React Learning Content",
+      "type": "youtube_video",
+      "url": "https://www.youtube.com/@HiteshChoudharydotcom",
+      "description": "Use the channel's React-focused videos when the user wants project-based frontend learning.",
+      "tags": ["react", "technical"],
+      "intents": ["technical"],
+      "priority": 88
+    },
+    {
+      "id": "hc-node-content",
+      "title": "Node.js and Backend Content",
+      "type": "youtube_video",
+      "url": "https://www.youtube.com/@HiteshChoudharydotcom",
+      "description": "Recommend this when the user asks for backend, APIs, or Node.js learning paths.",
+      "tags": ["nodejs", "technical"],
+      "intents": ["technical"],
+      "priority": 86
+    },
+    {
+      "id": "hc-career-guidance",
+      "title": "Career Advice Content",
+      "type": "youtube_video",
+      "url": "https://www.youtube.com/@HiteshChoudharydotcom",
+      "description": "Useful when the user asks about jobs, consistency, roadmap, or avoiding tutorial hell.",
+      "tags": ["career"],
+      "intents": ["career", "motivational"],
+      "priority": 90
+    },
+    {
+      "id": "hc-website-courses",
+      "title": "Hitesh Courses and Website",
+      "type": "course",
+      "url": "https://hitesh.ai/",
+      "description": "Official site for courses, batches, and curated learning programs.",
+      "tags": ["javascript", "react", "nodejs", "career"],
+      "intents": ["technical", "career", "default"],
+      "priority": 92
+    },
+    {
+      "id": "hc-masterji",
+      "title": "Masterji",
+      "type": "course",
+      "url": "https://hitesh.ai/",
+      "description": "A named Hitesh Choudhary learning app/product. If a user mentions Masterji, treat it as an existing offering and connect it to guided learning.",
+      "tags": ["masterji", "career", "technical"],
+      "aliases": ["masterji", "master ji"],
+      "intents": ["default", "technical", "career"],
+      "priority": 99
+    }
+  ]
+}

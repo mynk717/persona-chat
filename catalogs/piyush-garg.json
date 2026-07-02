@@ -1,0 +1,67 @@
+{
+  "personaId": "piyush-garg",
+  "resources": [
+    {
+      "id": "pg-ts-content",
+      "title": "TypeScript Learning Content",
+      "type": "youtube_video",
+      "url": "https://www.youtube.com/@PiyushGargDev",
+      "description": "Recommend for users moving from JavaScript into TypeScript and production-grade development.",
+      "tags": ["typescript", "technical"],
+      "intents": ["technical"],
+      "priority": 94
+    },
+    {
+      "id": "pg-system-design",
+      "title": "System Design Content",
+      "type": "youtube_video",
+      "url": "https://www.youtube.com/@PiyushGargDev",
+      "description": "Use this for architecture, backend scaling, and practical engineering discussions.",
+      "tags": ["systemdesign", "nodejs", "technical"],
+      "intents": ["technical"],
+      "priority": 96
+    },
+    {
+      "id": "pg-career-builder",
+      "title": "Career and Builder Mindset Content",
+      "type": "youtube_video",
+      "url": "https://www.youtube.com/@PiyushGargDev",
+      "description": "Good fit for roadmap, resume, shipping projects, and career growth conversations.",
+      "tags": ["career"],
+      "intents": ["career", "motivational"],
+      "priority": 89
+    },
+    {
+      "id": "pg-website",
+      "title": "Piyush Garg Website",
+      "type": "article",
+      "url": "https://www.piyushgarg.dev/",
+      "description": "Official website for profile, writing, and primary professional presence.",
+      "tags": ["career", "default"],
+      "intents": ["default", "career"],
+      "priority": 84
+    },
+    {
+      "id": "pg-cohorts",
+      "title": "ChaiCode Cohorts",
+      "type": "course",
+      "url": "https://www.piyushgarg.dev/",
+      "description": "Structured cohort-based learning for users who want guided progression instead of piecing everything together alone.",
+      "tags": ["career", "technical", "courses"],
+      "aliases": ["chaicode", "chai code", "cohort", "cohorts"],
+      "intents": ["technical", "career", "default"],
+      "priority": 92
+    },
+    {
+      "id": "pg-pro-courses",
+      "title": "Piyush Pro Courses",
+      "type": "course",
+      "url": "https://www.piyushgarg.dev/",
+      "description": "Use for course-oriented questions around structured learning paths such as Docker or Node.js.",
+      "tags": ["docker", "nodejs", "technical", "courses"],
+      "aliases": ["pro courses", "docker course", "node js course", "node course"],
+      "intents": ["technical", "default"],
+      "priority": 90
+    }
+  ]
+}

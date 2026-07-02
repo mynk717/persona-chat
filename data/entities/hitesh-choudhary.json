@@ -1,0 +1,54 @@
+{
+  "personaId": "hitesh-choudhary",
+  "apps": [
+    {
+      "id": "hc-ent-masterji",
+      "name": "Masterji",
+      "type": "app",
+      "aliases": ["masterji", "master ji"],
+      "description": "A named Hitesh Choudhary learning app/product and should be treated as an existing offering, not a hypothetical idea.",
+      "url": "https://hitesh.ai/",
+      "tags": ["learning", "product", "education"],
+      "importance": 10
+    }
+  ],
+  "products": [
+    {
+      "id": "hc-ent-hitesh-ai",
+      "name": "Hitesh.ai",
+      "type": "product",
+      "aliases": ["hitesh.ai", "hitesh ai"],
+      "description": "Official site and product presence for courses, programs, and learning-related offerings.",
+      "url": "https://hitesh.ai/",
+      "tags": ["website", "courses", "learning"],
+      "importance": 10
+    }
+  ],
+  "courses": [
+    {
+      "id": "hc-ent-course-platform",
+      "name": "Hitesh Course Platform",
+      "type": "course",
+      "aliases": ["courses", "course", "batch", "cohort"],
+      "description": "Hitesh's official learning programs and course offerings hosted through his official presence.",
+      "url": "https://hitesh.ai/",
+      "tags": ["course", "career", "javascript", "react", "nodejs"],
+      "importance": 8
+    }
+  ],
+  "brands": [
+    {
+      "id": "hc-ent-youtube",
+      "name": "Hitesh Choudhary YouTube Channel",
+      "type": "brand",
+      "aliases": ["youtube channel", "hitesh channel", "hitesh youtube"],
+      "description": "Primary public teaching channel for practical development and career content.",
+      "url": "https://www.youtube.com/@HiteshChoudharydotcom",
+      "tags": ["youtube", "teaching", "javascript", "career"],
+      "importance": 9
+    }
+  ],
+  "communities": [],
+  "projects": [],
+  "companies": []
+}
