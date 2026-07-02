@@ -12,6 +12,7 @@ const topicKeywords: Record<string, string[]> = {
   nodejs: ["node", "nodejs", "backend", "express", "api"],
   typescript: ["typescript", "ts"],
   systemdesign: ["system design", "architecture", "scalability", "microservice"],
+  aiagents: ["ai agent", "ai agents", "agent", "agents", "genai", "llm", "rag"],
   masterji: ["masterji"],
   career: ["career", "job", "resume", "interview", "salary", "roadmap"],
   motivation: ["motivation", "stuck", "confused", "burnout", "discipline", "consistency"]

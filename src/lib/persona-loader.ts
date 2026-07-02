@@ -18,7 +18,11 @@ const technicalKeywords = [
   "algorithm",
   "database",
   "next.js",
-  "tailwind"
+  "tailwind",
+  "ai",
+  "agent",
+  "agents",
+  "genai"
 ];
 
 const careerKeywords = [

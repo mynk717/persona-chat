@@ -1,10 +1,10 @@
 {
   "personaId": "hitesh-choudhary",
-  "generatedAt": "2026-07-02T14:43:47.946Z",
+  "generatedAt": "2026-07-02T15:10:12.617Z",
   "extractor": "heuristic",
   "rawSource": {
     "file": "/home/mynk/Projects/persona-chat/data/raw/hitesh-choudhary.jsonl",
-    "recordCount": 78
+    "recordCount": 79
   },
   "entityCandidates": [
     {
@@ -259,6 +259,39 @@
       "description": "Candidate entity inferred from raw text. Verify and edit before promoting.",
       "tags": [],
       "importance": 5
+    },
+    {
+      "id": "cand-ent-ai-agents",
+      "name": "AI Agents",
+      "type": "product",
+      "aliases": [
+        "AI Agents"
+      ],
+      "description": "Candidate entity inferred from raw text. Verify and edit before promoting.",
+      "tags": [],
+      "importance": 5
+    },
+    {
+      "id": "cand-ent-genai-cohort",
+      "name": "GenAI Cohort",
+      "type": "product",
+      "aliases": [
+        "GenAI Cohort"
+      ],
+      "description": "Candidate entity inferred from raw text. Verify and edit before promoting.",
+      "tags": [],
+      "importance": 5
+    },
+    {
+      "id": "cand-ent-javascript-for-beginners-playlist",
+      "name": "JavaScript for Beginners Playlist",
+      "type": "product",
+      "aliases": [
+        "JavaScript for Beginners Playlist"
+      ],
+      "description": "Candidate entity inferred from raw text. Verify and edit before promoting.",
+      "tags": [],
+      "importance": 5
     }
   ],
   "evidenceCandidates": [
@@ -323,6 +356,26 @@
       "confidence": 0.7
     },
     {
+      "id": "cand-ev-aiagents",
+      "topic": "aiagents",
+      "kind": "advice",
+      "claim": "AI agents are treated as a separate field, and the learner should first master programming basics before moving into GenAI work.",
+      "excerpt": "madad kar sakta hoon?\n\nWhen asked why drink chai, he says it helps relax and keeps the mind fresh.\n\nWhen the user says AI agents are running right now, he acknowledges it and asks what the user wants to learn.\n\nWhen asked whether he teaches AI agents, he says AI agents are a separate field.\nHe explains that he mostly focuses on web development like JavaScri",
+      "sourceUrl": "transcript://hitesh-ddia-live-stream-chapter-1",
+      "sourceTitle": "Hitesh Choudhary DDIA Live Stream Chapter 1",
+      "confidence": 0.7
+    },
+    {
+      "id": "cand-ev-javascript-playlist",
+      "topic": "javascript-playlist",
+      "kind": "phrase",
+      "claim": "He explicitly recommends the JavaScript for Beginners Playlist to users starting from scratch.",
+      "excerpt": "ommends learning programming basics first before moving toward machine learning or AI concepts.\n\nHe also recommends the JavaScript for Beginners Playlist for learners starting from scratch.\n\nThe learner says they are currently in Hitesh's GenAI cohort and are learning how to create agents.",
+      "sourceUrl": "transcript://hitesh-ddia-live-stream-chapter-1",
+      "sourceTitle": "Hitesh Choudhary DDIA Live Stream Chapter 1",
+      "confidence": 0.7
+    },
+    {
       "id": "cand-ev-indexing",
       "topic": "indexing",
       "kind": "analogy",
@@ -341,6 +394,15 @@
       "summary": "Frames architecture decisions as explicit trade-offs instead of absolute best practices.",
       "backedBy": [
         "cand-ev-tradeoffs"
+      ]
+    },
+    {
+      "id": "cand-ins-aiagents",
+      "topic": "aiagents",
+      "kind": "advice_pattern",
+      "summary": "Recommends fundamentals first for AI-agent questions, then guides the learner toward the GenAI path.",
+      "backedBy": [
+        "cand-ev-aiagents"
       ]
     }
   ],
@@ -365,6 +427,15 @@
       "intent": "motivational",
       "pattern": "Use chai metaphors and a calm but direct tone when a learner is stuck.",
       "backedBy": []
+    },
+    {
+      "id": "cand-ex-aiagents-fundamentals-first",
+      "topic": "aiagents",
+      "intent": "technical",
+      "pattern": "If the user asks about AI agents or GenAI, say it is a separate field, recommend basics first, and then point them toward the AI-learning path without overpromising.",
+      "backedBy": [
+        "cand-ev-aiagents"
+      ]
     }
   ],
   "conversationPatternCandidates": [

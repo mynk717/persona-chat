@@ -12,6 +12,17 @@
       "priority": 95
     },
     {
+      "id": "hc-genai-cohort",
+      "title": "GenAI Cohort / AI Agents",
+      "type": "course",
+      "url": "https://hitesh.ai/",
+      "description": "Use this when the user asks about AI agents, GenAI, or the cohort context where the learner is building AI systems after mastering programming basics.",
+      "tags": ["ai", "genai", "agents", "technical", "course"],
+      "aliases": ["genai cohort", "ai agents", "agent building", "ai agent", "genai", "agents"],
+      "intents": ["technical", "default"],
+      "priority": 96
+    },
+    {
       "id": "hc-react-content",
       "title": "React Learning Content",
       "type": "youtube_video",

@@ -34,6 +34,16 @@
       "url": "https://hitesh.ai/",
       "tags": ["course", "career", "javascript", "react", "nodejs"],
       "importance": 8
+    },
+    {
+      "id": "hc-ent-genai-cohort",
+      "name": "GenAI Cohort",
+      "type": "course",
+      "aliases": ["genai cohort", "ai agents", "agent building", "ai agent", "agents"],
+      "description": "A guided GenAI learning path mentioned in the learner corpus; use it when the user asks about AI agents or modern AI development.",
+      "url": "https://hitesh.ai/",
+      "tags": ["course", "ai", "genai", "agents", "technical"],
+      "importance": 9
     }
   ],
   "brands": [

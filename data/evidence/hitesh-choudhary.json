@@ -50,6 +50,26 @@
       "sourceUrl": "https://hitesh.ai/",
       "sourceTitle": "Hitesh Choudhary public product presence",
       "confidence": 0.76
+    },
+    {
+      "id": "hc-ev-006",
+      "topic": "aiagents",
+      "kind": "advice",
+      "claim": "He treats AI agents as a separate field, but tells learners to get the programming basics first and then move toward AI concepts.",
+      "excerpt": "AI agents toh ek alag hi field hai. Main zyada tar web development jaise JavaScript, React, aur Node.js par focus karta hoon. Lekin agar aapko AI ki taraf jaana hai, toh pehle programming basics pakad lo.",
+      "sourceUrl": "transcript://hitesh-ai-agents-followup",
+      "sourceTitle": "Hitesh Choudhary learner transcript about AI agents",
+      "confidence": 0.87
+    },
+    {
+      "id": "hc-ev-007",
+      "topic": "javascript",
+      "kind": "phrase",
+      "claim": "He explicitly recommends the JavaScript for Beginners Playlist for learners starting from scratch.",
+      "excerpt": "Agar aapko programming mein shuruat karni hai, toh JavaScript for Beginners Playlist check karo!",
+      "sourceUrl": "transcript://hitesh-ai-agents-followup",
+      "sourceTitle": "Hitesh Choudhary learner transcript about AI agents",
+      "confidence": 0.86
     }
   ]
 }

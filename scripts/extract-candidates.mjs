@@ -91,7 +91,10 @@ function heuristicCandidates(personaId, records) {
     "GDPR",
     "HIPAA",
     "SOC 2",
-    "DPDP"
+    "DPDP",
+    "AI Agents",
+    "GenAI Cohort",
+    "JavaScript for Beginners Playlist"
   ];
 
   for (const name of entityNames) {
@@ -177,6 +180,31 @@ function heuristicCandidates(personaId, records) {
     );
   }
 
+  if (lower.includes("ai agent") || lower.includes("genai")) {
+    addEvidence(
+      "aiagents",
+      "advice",
+      "AI agents are treated as a separate field, and the learner should first master programming basics before moving into GenAI work.",
+      "ai agent"
+    );
+    insights.push({
+      id: "cand-ins-aiagents",
+      topic: "aiagents",
+      kind: "advice_pattern",
+      summary: "Recommends fundamentals first for AI-agent questions, then guides the learner toward the GenAI path.",
+      backedBy: ["cand-ev-aiagents"]
+    });
+  }
+
+  if (lower.includes("javascript for beginners playlist")) {
+    addEvidence(
+      "javascript-playlist",
+      "phrase",
+      "He explicitly recommends the JavaScript for Beginners Playlist to users starting from scratch.",
+      "javascript for beginners playlist"
+    );
+  }
+
   if (lower.includes("index")) {
     addEvidence(
       "indexing",
@@ -238,6 +266,13 @@ function heuristicCandidates(personaId, records) {
       intent: "motivational",
       pattern: "Use chai metaphors and a calm but direct tone when a learner is stuck.",
       backedBy: []
+    },
+    {
+      id: "cand-ex-aiagents-fundamentals-first",
+      topic: "aiagents",
+      intent: "technical",
+      pattern: "If the user asks about AI agents or GenAI, say it is a separate field, recommend basics first, and then point them toward the AI-learning path without overpromising.",
+      backedBy: ["cand-ev-aiagents"]
     }
   );
 
