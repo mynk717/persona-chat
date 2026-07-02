@@ -60,12 +60,18 @@ export interface ChatMessage {
   content: string;
   timestamp: string;
   personaId: string;
+  provenance?: ChatProvenance;
 }
 
 export interface ChatSession {
   messages: ChatMessage[];
   personaId: string;
   createdAt: string;
+}
+
+export interface ChatProvenance {
+  intent: "technical" | "career" | "motivational" | "default";
+  chips: string[];
 }
 
 export interface PersonaSourceDocument {

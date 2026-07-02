@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { ChatInterface } from "@/components/ChatInterface";
 import { PersonaSelector } from "@/components/PersonaSelector";
-import type { ChatMessage, ChatSession, Persona } from "@/types/persona";
+import type { ChatMessage, ChatProvenance, ChatSession, Persona } from "@/types/persona";
 
 interface PersonaChatShellProps {
   personas: Persona[];
@@ -18,6 +18,35 @@ function createMessageId(): string {
   }
 
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function parseProvenance(headerValue: string | null): ChatProvenance | undefined {
+  if (!headerValue) {
+    return undefined;
+  }
+
+  try {
+    const decoded = atob(headerValue);
+    const parsed = JSON.parse(decoded) as Partial<ChatProvenance> & { chips?: unknown };
+
+    if (
+      (parsed.intent === "technical" ||
+        parsed.intent === "career" ||
+        parsed.intent === "motivational" ||
+        parsed.intent === "default") &&
+      Array.isArray(parsed.chips) &&
+      parsed.chips.every((chip) => typeof chip === "string")
+    ) {
+      return {
+        intent: parsed.intent,
+        chips: parsed.chips
+      };
+    }
+  } catch {
+    return undefined;
+  }
+
+  return undefined;
 }
 
 function buildInitialSessions(personas: Persona[]): SessionMap {
@@ -86,6 +115,7 @@ export function PersonaChatShell({ personas }: PersonaChatShellProps): JSX.Eleme
         throw new Error(payload?.error ?? "Request failed.");
       }
 
+      const provenance = parseProvenance(response.headers.get("X-Provenance"));
       const assistantMessageId = createMessageId();
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -102,7 +132,8 @@ export function PersonaChatShell({ personas }: PersonaChatShellProps): JSX.Eleme
               role: "assistant",
               content: "",
               timestamp: new Date().toISOString(),
-              personaId
+              personaId,
+              provenance
             }
           ]
         }

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
 import { addMessage, buildMessages } from "@/lib/context-manager";
-import { buildEntityPromptBlock } from "@/lib/persona-entities";
+import { buildEntityPromptBlock, matchEntities } from "@/lib/persona-entities";
 import { buildGroundingPromptBlock } from "@/lib/persona-grounding";
 import { buildSystemPrompt, detectIntent, loadPersona } from "@/lib/persona-loader";
 import { buildResourcePromptBlock, recommendResources } from "@/lib/resource-recommender";
@@ -68,6 +68,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       recommendResources(personaId, message, intent),
       buildGroundingPromptBlock(personaId, message, intent)
     ]);
+    const matchedEntities = await matchEntities(personaId, message);
     const systemPrompt = [
       buildSystemPrompt(persona, intent),
       entityBlock,
@@ -86,6 +87,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     };
 
     const messages = buildMessages(addMessage(history, userMessage), systemPrompt);
+    const provenance = {
+      intent,
+      chips: [
+        ...new Set(
+          [
+            persona.meta.full_name,
+            intent,
+            ...matchedEntities.map((entity) => entity.name),
+            ...resources.slice(0, 2).map((resource) => resource.title),
+            persona.meta.sources_scraped?.[0] ? "source-backed" : ""
+          ].filter(Boolean)
+        )
+      ]
+    };
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY
     });
@@ -125,7 +140,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return new NextResponse(stream, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-cache, no-transform"
+        "Cache-Control": "no-cache, no-transform",
+        "X-Provenance": Buffer.from(JSON.stringify(provenance)).toString("base64")
       }
     });
   } catch (caughtError) {

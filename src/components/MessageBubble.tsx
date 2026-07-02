@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -101,9 +102,11 @@ const markdownComponents: Components = {
 
 export function MessageBubble({ message, persona }: MessageBubbleProps): JSX.Element {
   const isAssistant = message.role === "assistant";
+  const [selectedReaction, setSelectedReaction] = useState<string | null>(null);
+  const reactions = ["👍", "✨", "🎯", "🤝"];
 
   return (
-    <div className={`group flex ${isAssistant ? "justify-start" : "justify-end"}`}>
+    <div className={`group flex animate-message-in ${isAssistant ? "justify-start" : "justify-end"}`}>
       <div className={`flex max-w-[88%] items-end gap-3 ${isAssistant ? "" : "flex-row-reverse"}`}>
         {isAssistant ? (
           <div
@@ -146,12 +149,46 @@ export function MessageBubble({ message, persona }: MessageBubbleProps): JSX.Ele
             <div className="prose prose-invert prose-sm max-w-none">
               <ReactMarkdown components={markdownComponents}>{message.content}</ReactMarkdown>
             </div>
+
+            {isAssistant && message.provenance ? (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {message.provenance.chips.map((chip) => (
+                  <span
+                    key={chip}
+                    className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-zinc-300"
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            ) : null}
           </div>
 
-          <div className="pointer-events-none absolute -bottom-6 left-2 opacity-0 transition group-hover:opacity-100">
+          <div className="pointer-events-none absolute -bottom-8 left-2 flex items-center gap-2 opacity-0 transition group-hover:opacity-100">
             <span className="rounded-full border border-white/10 bg-black/80 px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-zinc-400">
               {formatTimestamp(message.timestamp)}
             </span>
+            {isAssistant ? (
+              <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/10 bg-black/80 p-1">
+                {reactions.map((emoji) => {
+                  const active = selectedReaction === emoji;
+
+                  return (
+                    <button
+                      key={emoji}
+                      type="button"
+                      onClick={() => setSelectedReaction(emoji)}
+                      className={`flex h-6 w-6 items-center justify-center rounded-full text-[11px] transition ${
+                        active ? "bg-white/15 scale-110" : "hover:bg-white/10 hover:scale-105"
+                      }`}
+                      aria-label={`React with ${emoji}`}
+                    >
+                      {emoji}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

@@ -107,7 +107,7 @@ export function ChatInterface({
         {isLoading ? (
           <div className="flex items-end gap-3">
             <div
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl animate-soft-pulse"
               style={{
                 background: `linear-gradient(135deg, ${hexToRgba(
                   persona.meta.theme_color,
@@ -131,6 +131,9 @@ export function ChatInterface({
                 borderColor: hexToRgba(persona.meta.theme_color, 0.22)
               }}
             >
+              <span className="mr-1 text-[10px] uppercase tracking-[0.18em] text-zinc-400">
+                typing
+              </span>
               {[0, 1, 2].map((index) => (
                 <span
                   key={index}
