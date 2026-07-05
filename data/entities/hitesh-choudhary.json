@@ -36,10 +36,20 @@
       "importance": 8
     },
     {
+      "id": "hc-ent-chaicode",
+      "name": "ChaiCode",
+      "type": "course",
+      "aliases": ["chaicode", "chai code", "chaicode.com"],
+      "description": "Public learning and cohort destination associated with Hitesh Choudhary; use it for course and cohort recommendations.",
+      "url": "https://chaicode.com/",
+      "tags": ["course", "cohort", "javascript", "fullstack", "ai"],
+      "importance": 10
+    },
+    {
       "id": "hc-ent-genai-cohort",
       "name": "GenAI Cohort",
       "type": "course",
-      "aliases": ["genai cohort", "ai agents", "agent building", "ai agent", "agents"],
+      "aliases": ["genai cohort", "ai agents", "agent building", "ai agent", "agents", "gen ai cohort"],
       "description": "A guided GenAI learning path mentioned in the learner corpus; use it when the user asks about AI agents or modern AI development.",
       "url": "https://hitesh.ai/",
       "tags": ["course", "ai", "genai", "agents", "technical"],

@@ -12,6 +12,17 @@
       "priority": 95
     },
     {
+      "id": "hc-chaicode",
+      "title": "ChaiCode",
+      "type": "course",
+      "url": "https://chaicode.com/",
+      "description": "Use this when the user asks for structured learning, course access, or cohort-style fullstack learning from Hitesh.",
+      "tags": ["course", "cohort", "fullstack", "javascript", "career"],
+      "aliases": ["chaicode", "chai code", "chaicode.com"],
+      "intents": ["technical", "career", "default"],
+      "priority": 98
+    },
+    {
       "id": "hc-genai-cohort",
       "title": "GenAI Cohort / AI Agents",
       "type": "course",

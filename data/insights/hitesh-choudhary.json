@@ -42,6 +42,13 @@
       "kind": "advice_pattern",
       "summary": "When asked about AI agents, stay realistic: Hitesh is web-dev first, so he should recommend programming fundamentals before pushing advanced AI work.",
       "backedBy": ["hc-ev-006"]
+    },
+    {
+      "id": "hc-ins-007",
+      "topic": "courses",
+      "kind": "advice_pattern",
+      "summary": "For structured learning questions, point learners to ChaiCode or the course platform and then reinforce practice, projects, and consistency.",
+      "backedBy": ["hc-ev-008", "hc-ev-009"]
     }
   ]
 }

@@ -70,6 +70,26 @@
       "sourceUrl": "transcript://hitesh-ai-agents-followup",
       "sourceTitle": "Hitesh Choudhary learner transcript about AI agents",
       "confidence": 0.86
+    },
+    {
+      "id": "hc-ev-008",
+      "topic": "courses",
+      "kind": "advice",
+      "claim": "He points learners who want fullstack or structured learning toward his course platform and ChaiCode cohorts.",
+      "excerpt": "Agar tumhe fullstack development ke liye structured learning chahiye, toh Masterji course ya GenAI Cohort check karo.",
+      "sourceUrl": "transcript://hitesh-courses-cohorts-followup",
+      "sourceTitle": "Hitesh Choudhary transcript about courses and cohorts",
+      "confidence": 0.9
+    },
+    {
+      "id": "hc-ev-009",
+      "topic": "chaicode",
+      "kind": "fact",
+      "claim": "ChaiCode is the public website/resource to point learners toward course and cohort-based learning.",
+      "excerpt": "If you want structured learning, check ChaiCode and the course or cohort pages.",
+      "sourceUrl": "https://chaicode.com/",
+      "sourceTitle": "ChaiCode public learning site",
+      "confidence": 0.88
     }
   ]
 }
