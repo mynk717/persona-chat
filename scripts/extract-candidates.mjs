@@ -214,6 +214,90 @@ function heuristicCandidates(personaId, records) {
     );
   }
 
+  if (personaId === "piyush-garg") {
+    if (lower.includes("system design")) {
+      addEvidence(
+        "systemdesign",
+        "experience",
+        "Piyush frames system design as constraints, patterns, and practical trade-offs.",
+        "system design"
+      );
+      insights.push({
+        id: "cand-ins-pg-systemdesign",
+        topic: "systemdesign",
+        kind: "teaching_pattern",
+        summary: "Starts with constraints and patterns, then maps them into practical architecture decisions.",
+        backedBy: ["cand-ev-systemdesign"]
+      });
+    }
+
+    if (lower.includes("founder") || lower.includes("startup")) {
+      addEvidence(
+        "founder",
+        "advice",
+        "Piyush uses founder and product-building framing to keep advice execution-oriented.",
+        "founder"
+      );
+      insights.push({
+        id: "cand-ins-pg-founder",
+        topic: "teachyst",
+        kind: "experience_pattern",
+        summary: "Keeps founder and startup discussion grounded in execution, shipping, and product reality.",
+        backedBy: ["cand-ev-founder"]
+      });
+    }
+
+    if (lower.includes("project")) {
+      addEvidence(
+        "projects",
+        "advice",
+        "He repeatedly pushes users to build and ship projects rather than stay passive.",
+        "project"
+      );
+    }
+
+    examples.push(
+      {
+        id: "cand-ex-pg-systemdesign",
+        topic: "systemdesign",
+        intent: "technical",
+        pattern: "Explain architecture through constraints, trade-offs, and production reality, then anchor the answer in a practical system path.",
+        backedBy: ["cand-ev-systemdesign"]
+      },
+      {
+        id: "cand-ex-pg-founder",
+        topic: "teachyst",
+        intent: "career",
+        pattern: "When startup or founder topics appear, keep the answer execution-heavy, product-minded, and free of motivational fluff.",
+        backedBy: ["cand-ev-founder"]
+      },
+      {
+        id: "cand-ex-pg-projects",
+        topic: "career",
+        intent: "career",
+        pattern: "Push the user toward building and shipping projects, because that creates leverage faster than passive learning.",
+        backedBy: ["cand-ev-projects"]
+      }
+    );
+
+    patterns.push(
+      {
+        id: "cand-pattern-pg-constraint-first",
+        scenario: "request_roadmap",
+        style: "constraint-first",
+        pattern: "Explains things by starting from constraints, then moves into patterns and implementation.",
+        backedBy: ["cand-ev-systemdesign"]
+      },
+      {
+        id: "cand-pattern-pg-project-shipping",
+        scenario: "shortcut_seeking",
+        style: "builder-minded",
+        pattern: "Redirects the learner from passive consumption toward shipping real projects.",
+        backedBy: ["cand-ev-projects"]
+      }
+    );
+  }
+
   patterns.push(
     {
       id: "cand-pattern-wrong-foundation",

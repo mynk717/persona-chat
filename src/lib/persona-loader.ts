@@ -49,6 +49,19 @@ const motivationalKeywords = [
   "fear"
 ];
 
+const greetingKeywords = [
+  "hello",
+  "hi",
+  "hey",
+  "sirji",
+  "sir ji",
+  "namaste",
+  "good morning",
+  "good evening",
+  "kya haal",
+  "haal chaal"
+];
+
 const personaCache = new Map<string, Persona>();
 
 export async function loadPersona(personaId: string): Promise<Persona> {
@@ -145,4 +158,48 @@ export function buildStyleGuardBlock(persona: Persona, history: ChatMessage[]): 
   }
 
   return variationRules.join("\n");
+}
+
+function normalizeMessage(message: string): string {
+  return message.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function isDirectStateQuestion(message: string): boolean {
+  const normalized = normalizeMessage(message);
+  return (
+    normalized.includes("are you") ||
+    normalized.includes("kya aap") ||
+    normalized.includes("kya tum") ||
+    normalized.includes("chaye pi") ||
+    normalized.includes("chai pi") ||
+    normalized.includes("what are you doing") ||
+    normalized.includes("kya kar rahe") ||
+    normalized.includes("kya kr rahe")
+  );
+}
+
+function isGreeting(message: string): boolean {
+  const normalized = normalizeMessage(message);
+  return greetingKeywords.some((keyword) => normalized.includes(keyword));
+}
+
+export function buildConversationControlBlock(message: string): string {
+  const controls = [
+    "CONVERSATION CONTROL",
+    "Answer the user's actual question first. Do not dodge direct questions with a catchphrase.",
+    "If the user asks about your current state, activity, or preference, respond directly before any persona flavor.",
+    "If the message is only a greeting, reply naturally and briefly; do not force a teaching answer.",
+    "Avoid repeating the same opening line across consecutive turns.",
+    "Use persona flavor as seasoning, not as the entire meal."
+  ];
+
+  if (isGreeting(message)) {
+    controls.push("The user is greeting you. Keep the reply short, natural, and varied.");
+  }
+
+  if (isDirectStateQuestion(message)) {
+    controls.push("The user is asking about what you are doing or whether you are doing something. Answer directly and plainly.");
+  }
+
+  return controls.join("\n");
 }
