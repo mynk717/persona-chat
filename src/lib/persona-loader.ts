@@ -1,7 +1,7 @@
 import { readFile } from "fs/promises";
 import path from "path";
 
-import type { Persona } from "@/types/persona";
+import type { ChatMessage, Persona } from "@/types/persona";
 
 export type MessageIntent = "technical" | "career" | "motivational" | "default";
 
@@ -115,4 +115,34 @@ export function buildSystemPrompt(persona: Persona, messageIntent: MessageIntent
   ]
     .filter(Boolean)
     .join("\n");
+}
+
+function recentAssistantMessages(history: ChatMessage[]): string[] {
+  return history
+    .filter((message) => message.role === "assistant")
+    .slice(-3)
+    .map((message) => message.content.toLowerCase());
+}
+
+export function buildStyleGuardBlock(persona: Persona, history: ChatMessage[]): string {
+  const recentAssistantContent = recentAssistantMessages(history);
+  const usedSignaturePhrases = (persona.voice.signature_phrases ?? []).filter((phrase) =>
+    recentAssistantContent.some((content) => content.includes(phrase.toLowerCase()))
+  );
+
+  const variationRules = [
+    "STYLE VARIATION GUARD",
+    "Signature phrases are optional, not mandatory.",
+    "Preserve the persona's tone and intent, but do not reuse the exact same opener, catchphrase, or outro on every reply.",
+    "If the user greets casually, respond naturally; do not force a stock line unless it fits the moment.",
+    "Vary the response shape across turns: brief answer, example-first answer, bullet list, analogy, or clarifying question when appropriate.",
+    "Avoid sounding robotic or identical across repeated interactions."
+  ];
+
+  if (usedSignaturePhrases.length > 0) {
+    variationRules.push(`Recently used signature phrases: ${usedSignaturePhrases.join(" | ")}`);
+    variationRules.push("Do not reuse the recently used signature phrases unless the context strongly calls for it.");
+  }
+
+  return variationRules.join("\n");
 }

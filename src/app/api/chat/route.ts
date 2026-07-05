@@ -4,7 +4,12 @@ import OpenAI from "openai";
 import { addMessage, buildMessages } from "@/lib/context-manager";
 import { buildEntityPromptBlock, matchEntities } from "@/lib/persona-entities";
 import { buildGroundingPromptBlock } from "@/lib/persona-grounding";
-import { buildSystemPrompt, detectIntent, loadPersona } from "@/lib/persona-loader";
+import {
+  buildStyleGuardBlock,
+  buildSystemPrompt,
+  detectIntent,
+  loadPersona
+} from "@/lib/persona-loader";
 import { buildResourcePromptBlock, recommendResources } from "@/lib/resource-recommender";
 import type { ChatMessage } from "@/types/persona";
 
@@ -71,6 +76,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const matchedEntities = await matchEntities(personaId, message);
     const systemPrompt = [
       buildSystemPrompt(persona, intent),
+      buildStyleGuardBlock(persona, history),
       entityBlock,
       groundingBlock,
       buildResourcePromptBlock(resources)
