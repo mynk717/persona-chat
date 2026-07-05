@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { LoaderCircle, SendHorizontal } from "lucide-react";
+import { LoaderCircle, Mic, MicOff, SendHorizontal } from "lucide-react";
 
 import type { ChatMessage, Persona } from "@/types/persona";
 import { MessageBubble } from "@/components/MessageBubble";
@@ -12,6 +12,48 @@ interface ChatInterfaceProps {
   isLoading: boolean;
   error: string | null;
   onSend: (message: string) => Promise<void>;
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string;
+  confidence: number;
+}
+
+interface SpeechRecognitionResult {
+  isFinal: boolean;
+  length: number;
+  [index: number]: SpeechRecognitionAlternative;
+}
+
+interface SpeechRecognitionResultList {
+  length: number;
+  [index: number]: SpeechRecognitionResult;
+}
+
+interface SpeechRecognitionEvent extends Event {
+  readonly resultIndex: number;
+  readonly results: SpeechRecognitionResultList;
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  readonly error: string;
+}
+
+interface SpeechRecognitionInstance {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start: () => void;
+  stop: () => void;
+  abort: () => void;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+  onend: (() => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null;
+}
+
+interface WindowWithSpeechRecognition extends Window {
+  SpeechRecognition?: new () => SpeechRecognitionInstance;
+  webkitSpeechRecognition?: new () => SpeechRecognitionInstance;
 }
 
 function hexToRgba(hexColor: string, alpha: number): string {
@@ -39,7 +81,10 @@ export function ChatInterface({
   onSend
 }: ChatInterfaceProps): JSX.Element {
   const [input, setInput] = useState("");
+  const [isListening, setIsListening] = useState(false);
+  const [voiceSupported, setVoiceSupported] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -53,6 +98,16 @@ export function ChatInterface({
     });
   }, [messages, isLoading]);
 
+  useEffect(() => {
+    const win = window as WindowWithSpeechRecognition;
+    setVoiceSupported(Boolean(win.SpeechRecognition || win.webkitSpeechRecognition));
+
+    return () => {
+      recognitionRef.current?.abort();
+      recognitionRef.current = null;
+    };
+  }, []);
+
   const handleSubmit = async (): Promise<void> => {
     const value = input.trim();
     if (!value || isLoading) {
@@ -61,6 +116,66 @@ export function ChatInterface({
 
     setInput("");
     await onSend(value);
+  };
+
+  const stopListening = (): void => {
+    recognitionRef.current?.stop();
+  };
+
+  const handleVoiceToggle = (): void => {
+    if (isLoading || !voiceSupported) {
+      return;
+    }
+
+    if (isListening) {
+      stopListening();
+      return;
+    }
+
+    const win = window as WindowWithSpeechRecognition;
+    const Recognition = win.SpeechRecognition ?? win.webkitSpeechRecognition;
+
+    if (!Recognition) {
+      return;
+    }
+
+    const recognition = new Recognition();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = "hi-IN";
+
+    let transcript = "";
+
+    recognition.onresult = (event) => {
+      let partial = "";
+
+      for (let index = event.resultIndex; index < event.results.length; index += 1) {
+        const result = event.results[index];
+        const alternative = result[0];
+
+        if (result.isFinal) {
+          transcript += `${alternative.transcript} `;
+        } else {
+          partial += alternative.transcript;
+        }
+      }
+
+      setInput(`${transcript}${partial}`.trimStart());
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+      recognitionRef.current = null;
+    };
+
+    recognition.onerror = () => {
+      setIsListening(false);
+      recognitionRef.current = null;
+    };
+
+    recognitionRef.current = recognition;
+    setIsListening(true);
+    recognition.start();
   };
 
   return (
@@ -173,6 +288,23 @@ export function ChatInterface({
 
           <button
             type="button"
+            onClick={handleVoiceToggle}
+            disabled={isLoading || !voiceSupported}
+            aria-pressed={isListening}
+            title={voiceSupported ? "Speak instead of typing" : "Voice input not supported in this browser"}
+            className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 text-white transition disabled:cursor-not-allowed disabled:opacity-40"
+            style={{
+              backgroundColor: isListening ? persona.meta.theme_color : "rgba(255,255,255,0.03)",
+              boxShadow: isListening
+                ? `0 12px 24px ${hexToRgba(persona.meta.theme_color, 0.28)}`
+                : undefined
+            }}
+          >
+            {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+          </button>
+
+          <button
+            type="button"
             onClick={() => void handleSubmit()}
             disabled={isLoading || input.trim().length === 0}
             className="inline-flex h-12 w-12 items-center justify-center rounded-2xl text-white transition disabled:cursor-not-allowed disabled:opacity-45"
@@ -183,6 +315,13 @@ export function ChatInterface({
           >
             <SendHorizontal className="h-4 w-4" />
           </button>
+        </div>
+        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+          {voiceSupported
+            ? isListening
+              ? "Listening... speak naturally"
+              : "Voice input available"
+            : "Voice input unavailable in this browser"}
         </div>
       </div>
     </div>
